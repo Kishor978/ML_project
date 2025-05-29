@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
-from sklearn.metrics import confusion_matrix,roc_curve, auc
+from sklearn.metrics import confusion_matrix,roc_curve, auc, precision_recall_curve, f1_score
+
 import os
 
 class ResultVisualizer:
@@ -52,6 +53,7 @@ class ResultVisualizer:
         """Plot confusion matrix for a model"""
         for model_name, y_pred in predictions_dict.items():
             plt.figure(figsize=(8, 6))
+            
             cm = confusion_matrix(y_true, y_pred)
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
             plt.title(f'{model_name} Confusion Matrix')
@@ -70,7 +72,14 @@ class ResultVisualizer:
             plt.figure(figsize=(8, 6))
             fpr, tpr, _ = roc_curve(y_true, y_proba)
             roc_auc = auc(fpr, tpr)
-            
+
+            precision, recall, thresholds = precision_recall_curve(y_true, y_proba)
+            f1 = 2 * (precision * recall) / (precision + recall)
+
+            # Best threshold
+            best_threshold = thresholds[np.argmax(f1)]
+            print(f"Best threshold for F1: {best_threshold}")
+
             plt.plot(fpr, tpr, label=f'AUC = {roc_auc:.4f}')
             plt.plot([0, 1], [0, 1], 'k--')
             plt.xlim([0.0, 1.0])

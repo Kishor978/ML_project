@@ -50,8 +50,5 @@ def get_models():
                 max_depth=5,
                 n_estimators=200,
                 verbosity=-1
-            ),
-            "NaiveBayes": GaussianNB(
-                var_smoothing=1e-9
             )
         }
