@@ -11,11 +11,11 @@ class ModelPredictor:
         """Load all saved models"""
         print("Loading models...")
         for model_file in os.listdir(models_dir):
-            if model_file.endswith('.joblib'):
-                if model_file == 'optimal_thresholds.joblib':
+            if model_file.endswith('.pkl'):
+                if model_file == 'optimal_thresholds.pkl':
                     self.thresholds = joblib.load(os.path.join(models_dir, model_file))
                     print("Loaded optimal thresholds")
-                elif model_file != 'preprocessor.joblib':
+                elif model_file != 'preprocessor.pkl':
                     model_name = os.path.splitext(model_file)[0]
                     model_path = os.path.join(models_dir, model_file)
                     self.models[model_name] = joblib.load(model_path)

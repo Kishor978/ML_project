@@ -92,11 +92,11 @@ class MLClassificationPipeline:
         """Save preprocessor to file"""
         import joblib
         os.makedirs('models', exist_ok=True)
-        joblib.dump(self.preprocessor, 'models/preprocessor.joblib')
-        print("Preprocessor saved to models/preprocessor.joblib")
+        joblib.dump(self.preprocessor, 'models/preprocessor.pkl')
+        print("Preprocessor saved to models/preprocessor.pkl")
     
     def _load_preprocessor(self):
         """Load preprocessor from file"""
         import joblib
-        self.preprocessor = joblib.load('models/preprocessor.joblib')
+        self.preprocessor = joblib.load('models/preprocessor.pkl')
         print("Preprocessor loaded")

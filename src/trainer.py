@@ -168,12 +168,12 @@ class ModelTrainer:
         
         # Save models
         for model_name, model in self.best_models.items():
-            path = os.path.join(output_dir, f'{model_name}.joblib')
+            path = os.path.join(output_dir, f'{model_name}.pkl')
             joblib.dump(model, path)
             print(f"Saved {model_name} to {path}")
         
         # Save thresholds
         if self.optimal_thresholds:
-            thresholds_path = os.path.join(output_dir, 'optimal_thresholds.joblib')
+            thresholds_path = os.path.join(output_dir, 'optimal_thresholds.pkl')
             joblib.dump(self.optimal_thresholds, thresholds_path)
             print(f"Saved optimal thresholds to {thresholds_path}")
