@@ -5,9 +5,8 @@ import os
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, roc_auc_score, f1_score, recall_score, confusion_matrix
 from imblearn.over_sampling import SMOTE
-from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
 from src import get_models
+import matplotlib.pyplot as plt
 
 class ModelTrainer:
     def __init__(self):
@@ -109,7 +108,7 @@ class ModelTrainer:
             self.optimal_thresholds[model_name] = best_threshold
             
             print(f"  Optimal threshold: {best_threshold:.4f} (F1: {f1_scores[best_idx]:.4f})")
-    
+            
     def _train_final_models(self, X, y):
         """Train final models on full training data"""
         print("\nTraining final models...")

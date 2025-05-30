@@ -25,7 +25,6 @@ def get_models():
                 min_samples_split=2
             ),
             "XGBoost": XGBClassifier(
-                scale_pos_weight=1.5,  # Adjust based on class imbalance
                 eval_metric='logloss',
                 random_state=42,
                 learning_rate=0.1,
